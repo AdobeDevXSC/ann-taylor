@@ -2,8 +2,8 @@
 
 
 ## Environments
-- Preview: Preview: https://main--{repo}--{owner}.hlx.page/
-- Live: https://main--{repo}--{owner}.hlx.live/
+- Preview: Preview: https://main--ann-taylor--adobedevxsc.hlx.page/
+- Live: https://main--ann-taylor--adobedevxsc.hlx.live/
 
 ## Installation
 
