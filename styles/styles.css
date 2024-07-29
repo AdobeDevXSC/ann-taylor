@@ -12,16 +12,18 @@
 
 :root {
   /* colors */
-  --link-color: #035fe6;
-  --link-hover-color: #136ff6;
-  --background-color: white;
+  --footer-background: var(--dark-color);
+  --yellow-banner:rgb(240, 253, 171);
+  --pigeon-blue: rgb(120, 148, 160);
+  --pink: #de1b70;
+  --sale-red: #FF0000;
   --light-color: #eee;
-  --dark-color: #ccc;
+  --dark-color: #111;
   --text-color: black;
 
   /* fonts */
   --body-font-family: roboto, roboto-fallback;
-  --heading-font-family: var(--body-font-family);
+  --heading-font-family: modernline;
   --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
   /* body sizes */
