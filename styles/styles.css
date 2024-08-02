@@ -12,18 +12,24 @@
 
 :root {
   /* colors */
+  /* footer colors */
   --footer-background: var(--dark-color);
-  --yellow-banner:rgb(240, 253, 171);
+  --footer-card-section: #F9F1E6;
+
+  /* banner colors */
+  --yellow-banner: #f7f1e3;
   --pigeon-blue: rgb(120, 148, 160);
+  --lilac: rgb(157, 151, 177);
+
+  --white: #ffffff;
   --pink: #de1b70;
   --sale-red: #FF0000;
-  --light-color: #eee;
   --dark-color: #111;
-  --text-color: black;
+  --text-color: #000000;
 
   /* fonts */
   --body-font-family: roboto, roboto-fallback;
-  --heading-font-family: modernline;
+  --heading-font-family: var(--body-font-family);
   --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
   /* body sizes */

@@ -1,0 +1,22 @@
+/* global teaser styles */
+main .section.teaser-container {
+	padding: 0;
+}
+
+main .section.teaser-container > div {
+	padding: 0;
+	max-width: unset;
+}
+
+.teaser > div > div.hidden {
+	display: none;
+	visibility: hidden;
+}
+
+.teaser img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+

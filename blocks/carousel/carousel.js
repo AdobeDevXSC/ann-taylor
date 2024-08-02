@@ -103,7 +103,7 @@ async function fetchJson(link) {
 let carouselId = 0;
 export default async function decorate(block) {
   carouselId += 1;
-  const isJSONCarousel = block.classList.contains('cards');
+  const isJSONCarousel = block.classList.contains('is-json');
 
   block.setAttribute('id', `carousel-${carouselId}`);
   const rows = block.querySelectorAll(':scope > div');
@@ -139,49 +139,40 @@ export default async function decorate(block) {
     container.append(slideNavButtons);
   }
 
-  const isImageCards = block.classList.contains('image-cards');
-
   if(isJSONCarousel){  
 	const link = block.querySelector('a');
   	const cardData = await fetchJson(link);
 	cardData.forEach((card, idx) => {
-		const picture = createOptimizedPicture(card.image, card.title, false, [{ width: 320 }]);
-		picture.lastElementChild.width = '320';
-		picture.lastElementChild.height = '180';
 
+		// handles images being brought in from scene7 links
+		function jsx(html, ...args) {
+			return html.slice(1).reduce((str, elem, i) => str + args[i] + elem, html[0]);
+		}
+		const picture = document.createElement('picture')
+		
+		picture.innerHTML = jsx`
+			<picture>
+				<source type="image/webp" srcset="${card.s7image}?$rfk_medium$">
+				<img class="s7" loading="lazy" alt="${card.title}" src="${card.s7image}?$rfk_medium$">
+			</picture>
+		`;
+		// // //
+		  
 		const createdSlide = document.createElement('li');
 		createdSlide.dataset.slideIndex = idx;
 		createdSlide.setAttribute('id', `carousel-${carouselId}-slide-${idx}`);
 		createdSlide.classList.add('carousel-slide');
-		if(isImageCards){
-			createdSlide.innerHTML = `
-				<div class="cards-card-image">
-					${picture.outerHTML}
-				</div>
-				<a href="${card.url}" aria-label="${card['anchor-text']}" title="${card['anchor-text']}">
-					<div class="cards-card-body">
-						<h5>${card.title}</h5>
-						<p>${card.copy}</p>
-					</div>
-				</a>`
-		} else {
+
 		createdSlide.innerHTML = `
         <div class="cards-card-image">
           ${picture.outerHTML}
         </div>
         <div class="cards-card-body">
           <h5>${card.title}</h5>
-		  <p>${card.copy}</p>
-          <p class="button-container">
-            <a href="${card.url}" aria-label="${card['anchor-text']}" title="${card['anchor-text']}" class="button">
-              Read More 
-              <span class="card-arrow">
-                <img class="icon" src="/icons/chevron-down.svg" />
-              </span>
-            </a>
-          </p>
+		  <p><span>${card.nowPrice}</span> <span class="strokethrough">${card.discountedPrice}</span> (original ${card.originalPrice})</p>
+		  <p class="percent">Extra ${card.percentOff}% Off. Price as Marked</p>
         </div>
-      `;}
+      `;
 
 		const labeledBy = createdSlide.querySelector('h1, h2, h3, h4, h5, h6');
 		if (labeledBy) {
