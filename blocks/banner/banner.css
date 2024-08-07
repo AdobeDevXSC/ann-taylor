@@ -1,0 +1,92 @@
+.section.banner-container {
+	padding: 0;
+	margin: 6px 0 16px;
+}
+
+.banner > div > div {
+	display: grid;
+	grid-template-columns: repeat(8, 1fr);
+}
+
+.banner p.button-container {
+	grid-column: 8/ span 1;
+	grid-row: 1/ span 2;
+	align-self: center;
+	margin: 0;
+}
+
+.banner p.button-container a {
+	display: block;
+	margin: 0;
+	font-weight: 300;
+	text-underline-offset: 3px;
+	text-decoration: underline;
+	font-size: 13px;
+}
+
+/* background colors */
+.section.banner-container.pigeonblue-bg {
+	background-color: var(--pigeon-blue);
+	color: var(--white);
+}
+
+.section.banner-container.black-bg {
+	background-color: var(--black);
+	color: var(--white);
+}
+
+/* blue banner styles */
+.section.banner-container.pigeonblue-bg .banner h6 {
+	margin: 0;
+	grid-column: 1/ span 1;
+	grid-row: 1/ span 2;
+	font-size: 13px;
+	font-weight: 500;
+	font-family: var(--body-font-family);
+	text-transform: uppercase;
+	align-self: center;
+}
+
+.section.banner-container.pigeonblue-bg .banner h5 {
+	margin: 16px 0 8px;
+	grid-column: 3/ span 4;
+	line-height: 1.3;
+	font-family: var(--body-font-family);
+	font-weight: 500;
+	font-size: 18px;
+	align-self: flex-end;
+	text-transform: uppercase;
+	text-align: center;
+} 
+
+.section.banner-container.pigeonblue-bg .banner h5 sup {
+	font-size: 8px;
+}
+
+.section.banner-container.pigeonblue-bg .banner p:not(.button-container) {
+	margin: 0 0 16px;
+	grid-column: 3/ span 4;
+	align-self: flex-start;
+	font-weight: 400;
+	text-align: center;
+	font-size: 10px;
+}
+
+/* black banner styles */
+.section.banner-container.black-bg .banner h4 { 
+	grid-column: 3/ span 4;
+	text-align: center;
+	font-weight: 400;
+	font-size: 28px;
+	margin: 18px 0 0;
+}
+
+.section.banner-container.black-bg .banner p:not(.button-container) {
+	margin: 0 0 20px;
+	grid-column: 3/ span 4;
+	align-self: flex-start;
+	font-weight: 300;
+	text-align: center;
+	font-size: 11px;
+	line-height: 1;
+}
