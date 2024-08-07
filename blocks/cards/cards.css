@@ -1,19 +1,54 @@
-.cards > ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(278px, 1fr));
-  grid-gap: 16px;
+@media (width <= 1024px) {
+	.section.cards-container.desktop-only {
+		display: none;
+	}
 }
 
-.cards > ul > li {
-  border: 1px solid var(--dark-color);
-  background-color: var(--background-color)
+.section.cards-container.desktop-only {
+	padding-top: 16px;
+	padding-bottom: 16px;
+}
+
+.cards-container h5 {
+	font-family: var(--body-font-family);
+	text-transform: uppercase;
+	font-size: 16px;
+	font-weight: 500;
+    line-height: 1.3;
+    letter-spacing: 0.08em;
+	margin: 0 0 12px 0;
+}
+
+.cards {
+	overflow: hidden;
+}
+
+.cards > ul {
+  list-style: none;
+  margin: 0 0 0 32px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(175px, 1fr));
+  grid-gap: 8px;
+  overflow: scroll;
+}
+
+.cards > ul > li:hover {
+	cursor: pointer;
 }
 
 .cards .cards-card-body {
-  margin: 16px;
+  margin: 0 16px 16px 16px;
+}
+
+.cards .cards-card-body a {
+	margin: 0;
+	font-family: var(--heading-font-family);
+	font-weight: 300;
+	font-size: 16px;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+
 }
 
 .cards .cards-card-image {
@@ -26,6 +61,5 @@
 
 .cards > ul > li img {
   width: 100%;
-  aspect-ratio: 4 / 3;
   object-fit: cover;
 }

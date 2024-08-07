@@ -18,8 +18,6 @@ export default async function decorate(block) {
   const ul = document.createElement('ul');
 
 	[...block.children].forEach((row) => {
-		const anchor = document.createElement('a');
-		anchor.href = '';
 		const li = document.createElement('li');
 		while (row.firstElementChild) li.append(row.firstElementChild);
 		[...li.children].forEach((div) => {
@@ -32,8 +30,7 @@ export default async function decorate(block) {
 			div.className = 'cards-card-body';
 		}
 		});
-		anchor.append(li);
-		ul.append(anchor);
+		ul.append(li);
 	});
   
   if (isJSON) {

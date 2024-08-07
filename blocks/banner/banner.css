@@ -19,8 +19,8 @@
 	display: block;
 	margin: 0;
 	font-weight: 300;
-	text-underline-offset: 3px;
 	text-decoration: underline;
+	text-underline-offset: 3px;
 	font-size: 13px;
 }
 
