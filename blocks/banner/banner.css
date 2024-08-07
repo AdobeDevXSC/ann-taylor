@@ -1,5 +1,5 @@
 .section.banner-container {
-	padding: 0;
+	padding: 0 2rem;
 	margin: 6px 0 16px;
 }
 
@@ -12,6 +12,7 @@
 	grid-column: 8/ span 1;
 	grid-row: 1/ span 2;
 	align-self: center;
+	justify-self: flex-end;
 	margin: 0;
 }
 

@@ -5,8 +5,8 @@
 }
 
 .section.cards-container.desktop-only {
-	padding-top: 16px;
-	padding-bottom: 16px;
+	padding-top: 0;
+	padding-bottom: 0;
 }
 
 .cards-container h5 {
@@ -28,7 +28,7 @@
   margin: 0 0 0 32px;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(6, minmax(175px, 1fr));
+  grid-template-columns: repeat(6, minmax(150px, 1fr));
   grid-gap: 8px;
   overflow: scroll;
 }
@@ -45,7 +45,7 @@
 	margin: 0;
 	font-family: var(--heading-font-family);
 	font-weight: 300;
-	font-size: 16px;
+	font-size: 14px;
 	text-decoration: underline;
 	text-decoration-thickness: 1px;
 	text-underline-offset: 3px;

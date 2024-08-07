@@ -21,6 +21,8 @@
   --pigeon-blue: rgb(119, 160, 188);
   --lilac: rgb(157, 151, 177);
 
+  /* background */
+
   --white: #ffffff;
   --black: #000000;
   --pink: #de1b70;
@@ -28,7 +30,7 @@
   --sale-red-carousel: #C44F4F;
 
   --dark-color: #111;
-  --text-color: #000000;
+  --text-color: var(--black);
 
   /* fonts */
   --body-font-family: sofia-pro;
@@ -201,6 +203,7 @@ main img {
 /* sections */
 main .section {
   padding: 64px 16px;
+  margin-bottom: 16px;
 }
 
 @media (width >= 600px) {
