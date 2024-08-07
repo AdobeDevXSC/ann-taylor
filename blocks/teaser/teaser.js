@@ -16,7 +16,7 @@ export default function decorate(block) {
 			mobileImage.closest('div').className = ''
 		}
 	}
-
+	
 	toggleImage();
 	isDesktop.addEventListener('change', () => toggleImage());
   }
