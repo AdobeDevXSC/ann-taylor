@@ -18,18 +18,23 @@
 
   /* banner colors */
   --yellow-banner: #f7f1e3;
-  --pigeon-blue: rgb(120, 148, 160);
+  --pigeon-blue: rgb(119, 160, 188);
   --lilac: rgb(157, 151, 177);
 
   --white: #ffffff;
+  --black: #000000;
   --pink: #de1b70;
-  --sale-red: #FF0000;
+  --sale-red-header: #FF0000;
+  --sale-red-carousel: #C44F4F;
+
   --dark-color: #111;
   --text-color: #000000;
 
   /* fonts */
-  --body-font-family: roboto, roboto-fallback;
-  --heading-font-family: var(--body-font-family);
+  --body-font-family: sofia-pro;
+  --heading-font-family: kudryashev-d-contrast;
+  --accent-font: modernline;
+  --accent-heading-font: baskerville-urw;
   --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
   /* body sizes */
