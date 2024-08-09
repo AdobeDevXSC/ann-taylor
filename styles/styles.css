@@ -16,12 +16,11 @@
   --footer-background: var(--dark-color);
   --footer-card-section: #F9F1E6;
 
-  /* banner colors */
+  /* banner & background colors */
   --yellow-banner: #f7f1e3;
   --pigeon-blue: rgb(119, 160, 188);
   --lilac: rgb(157, 151, 177);
-
-  /* background */
+  --light-grey: #f6f6f6;
 
   --white: #ffffff;
   --black: #000000;

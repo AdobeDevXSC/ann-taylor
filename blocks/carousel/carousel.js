@@ -151,10 +151,8 @@ export default async function decorate(block) {
 		const picture = document.createElement('picture')
 		
 		picture.innerHTML = jsx`
-			<picture>
-				<source type="image/webp" srcset="${card.s7image}?$rfk_medium$">
-				<img class="s7" loading="lazy" alt="${card.title}" src="${card.s7image}?$rfk_medium$">
-			</picture>
+			<source type="image/webp" srcset="${card.s7image}?$rfk_medium$">
+			<img class="s7" loading="lazy" alt="${card.title}" src="${card.s7image}?$rfk_medium$">
 		`;
 		// // //
 		  
@@ -162,17 +160,31 @@ export default async function decorate(block) {
 		createdSlide.dataset.slideIndex = idx;
 		createdSlide.setAttribute('id', `carousel-${carouselId}-slide-${idx}`);
 		createdSlide.classList.add('carousel-slide');
-
-		createdSlide.innerHTML = `
-        <div class="cards-card-image">
-          ${picture.outerHTML}
-        </div>
-        <div class="cards-card-body">
-          <h5>${card.title}</h5>
-		  <p><span>${card.nowPrice}</span> <span class="strokethrough">${card.discountedPrice}</span> (original ${card.originalPrice})</p>
-		  <p class="percent">Extra ${card.percentOff}% Off. Price as Marked</p>
-        </div>
-      `;
+		
+		if(card.bestSeller === 'true'){
+			createdSlide.innerHTML = `
+			<div class="slide-image">
+			${picture.outerHTML}
+			<span>
+				${card.bestSeller === 'true' ? 'best seller' : ''}
+			</span>
+			</div>
+			<div class="slide-content">
+			<h5>${card.title}</h5>
+			<p><span>${card.nowPrice}</span> <span class="strokethrough">${card.discountedPrice}</span> (original ${card.originalPrice})</p>
+			<p class="percent">Extra ${card.percentOff}% Off. Price as Marked</p>
+			</div>`
+	  	} else {		
+			createdSlide.innerHTML = `
+			<div class="slide-image">
+				${picture.outerHTML}
+			</div>
+			<div class="slide-content">
+				<h5>${card.title}</h5>
+				<p><span>${card.nowPrice}</span> <span class="strokethrough">${card.discountedPrice}</span> (original ${card.originalPrice})</p>
+				<p class="percent">Extra ${card.percentOff}% Off. Price as Marked</p>
+			</div>`
+		}
 
 		const labeledBy = createdSlide.querySelector('h1, h2, h3, h4, h5, h6');
 		if (labeledBy) {
