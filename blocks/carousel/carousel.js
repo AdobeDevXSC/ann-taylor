@@ -164,24 +164,36 @@ export default async function decorate(block) {
 		if(card.bestSeller === 'true'){
 			createdSlide.innerHTML = `
 			<div class="slide-image">
-			${picture.outerHTML}
-			<span>
+				${picture.outerHTML}
+				<button class="qv-button desktop">Quick View <span><img class="icon" src="/icons/chevron-right.svg" /></span></button>
+			<span class="bestseller">
 				${card.bestSeller === 'true' ? 'best seller' : ''}
 			</span>
 			</div>
+			<button class="qv-button mobile">Quick View></button>
 			<div class="slide-content">
 			<h5>${card.title}</h5>
-			<p><span>${card.nowPrice}</span> <span class="strokethrough">${card.discountedPrice}</span> (original ${card.originalPrice})</p>
+			<p>
+				<span class="sale-price">${card.nowPrice}</span>
+				<span class="strikethrough">${card.discountedPrice}</span>
+				(original ${card.originalPrice})
+			</p>
 			<p class="percent">Extra ${card.percentOff}% Off. Price as Marked</p>
 			</div>`
 	  	} else {		
 			createdSlide.innerHTML = `
 			<div class="slide-image">
 				${picture.outerHTML}
+				<button class="qv-button desktop">Quick View <span><img class="icon" src="/icons/chevron-right.svg" /></span></button>
 			</div>
+			<button class="qv-button mobile">Quick View</button>
 			<div class="slide-content">
 				<h5>${card.title}</h5>
-				<p><span>${card.nowPrice}</span> <span class="strokethrough">${card.discountedPrice}</span> (original ${card.originalPrice})</p>
+				<p>
+					<span class="sale-price">${card.nowPrice}</span>
+					<span class="strikethrough">${card.discountedPrice}</span>
+					(original ${card.originalPrice})
+				</p>
 				<p class="percent">Extra ${card.percentOff}% Off. Price as Marked</p>
 			</div>`
 		}

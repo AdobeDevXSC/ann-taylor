@@ -18,6 +18,7 @@
 	display: none;
 }
 
+/* slide image styles */
 .carousel .carousel-slide .slide-image {
 	position: relative;
 	height: fit-content;
@@ -31,7 +32,8 @@
 	display: block;
 }
 
-.carousel .carousel-slide .slide-image span {
+/* bestseller tag */
+.carousel .carousel-slide .slide-image span.bestseller {
 	display: block;
 	position: absolute;
 	bottom: 8px;
@@ -39,13 +41,114 @@
 	font-size: 10px;
 	text-transform: uppercase;
     letter-spacing: 1px;
+	font-size: 12px;
     font-weight: 400;
 	padding: 3px 8px;
 	background: rgba(255, 255, 255, .85);
-    color: #757575;
+    color: var(--accent-dark-color);
 }
 
+/* quickview button */
+.carousel .carousel-slide .qv-button.mobile {
+	color: #111;
+    display: block;
+	margin: 10px 0 0;
+	width: 100%;
+	background-color: #eee;
+	border-radius: 0;
+    font-size: .625rem;
+	text-transform: uppercase;
+	line-height: 1rem;
+	letter-spacing: .03125rem;
+	font-weight: 400;
+	padding: 2px 4px;
+}
 
+.carousel .carousel-slide .qv-button.desktop {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	padding: 3%;
+	text-align: center;
+    text-transform: uppercase;
+    background-color: #f8f8f8;
+	margin: 0;
+	border-radius: 0;
+	z-index: 2;
+	opacity: 0;
+	font-size: 1rem;
+    letter-spacing: 0.5px;
+	font-weight: 400;
+}
+
+.carousel .carousel-slide:hover .qv-button.desktop {
+	opacity: 0.85;
+}
+
+.carousel .carousel-slide .qv-button.desktop > span {
+	display: block;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 12px;
+	overflow: hidden;
+}
+
+.carousel .carousel-slide .qv-button.desktop > span > img {
+	display: block;
+	object-fit: cover;
+	margin-bottom: -6px;
+}
+
+.carousel .carousel-slide .qv-button.mobile {
+	display: none;
+}
+
+@media (width <= 1024px){
+	.carousel .carousel-slide .qv-button.desktop {
+		display: none;
+	}
+
+	.carousel .carousel-slide .qv-button.mobile {
+		display: block;
+	}
+}
+
+/* slide content typography */
+.carousel .carousel-slide .slide-content h5 {
+	font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.25px;
+    color: #111;
+	font-family: var(--body-font-family);
+	margin: 16px 0 4px;
+}
+
+.carousel .carousel-slide .slide-content p {
+	margin: 0;
+	font-size: 12px;
+	color: var(--accent-dark-color);	
+}
+
+.carousel .carousel-slide .slide-content p span:first-of-type {
+	color: var(--sale-red-carousel);
+}
+
+.carousel .carousel-slide .slide-content p > span.strikethrough {
+	color: var(--accent-dark-color);
+	text-decoration: line-through;
+}
+
+.carousel .carousel-slide .slide-content p.percent {
+	font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.6px;
+    line-height: 17px;
+    color: var(--accent-dark-color);
+	margin: 0;
+}
 
 /* default boilerplate styles */
 .carousel .carousel-slides-container {
@@ -61,6 +164,7 @@
   
   .carousel .carousel-slides {
 	display: flex;
+	gap: 12px;
 	scroll-behavior: smooth;
 	scroll-snap-type: x mandatory;
 	overflow: scroll clip;
@@ -71,7 +175,7 @@
   }
   
   .carousel .carousel-slide {
-	flex: 0 0 100%;
+	flex: 0 0 25%;
 	scroll-snap-align: start;
 	display: flex;
 	flex-direction: column;
@@ -101,7 +205,7 @@
 	object-fit: cover;
   }
   
-  .carousel .carousel-slide .carousel-slide-content {
+  /* .carousel .carousel-slide .carousel-slide-content {
 	z-index: 1;
 	padding: 1rem;
 	margin: 1.5rem 3rem;
@@ -109,7 +213,7 @@
 	background-color: rgba(0 0 0 / 50%);
 	position: relative;
 	width: var(--slide-content-width, auto);
-  }
+  } */
   
   /* hide slide indicators */
   .carousel .carousel-slide-indicators {
@@ -161,28 +265,28 @@
   
   /* stylelint-disable-next-line no-descending-specificity */
   .carousel .carousel-navigation-buttons button {
-	border-radius: 8px;
+	border-radius: 50px;
 	margin: 0;
 	padding: 0;
-	width: 2rem;
-	height: 2rem;
+	width: 53px;
+	height: 53px;
 	position: relative;
-	background-color: rgba(0 0 0 / 25%);
+	border: 3px solid var(--accent-dark-color);
   }
   
-  .carousel .carousel-navigation-buttons button:hover,
+  /* .carousel .carousel-navigation-buttons button:hover,
   .carousel .carousel-navigation-buttons button:focus-visible {
 	background-color: rgba(0 0 0 / 80%);
-  }
+  } */
   
   .carousel .carousel-navigation-buttons button::after {
 	display: block;
 	content: "";
-	border: 3px white solid;
+	border: 3px var(--accent-dark-color) solid;
 	border-bottom: 0;
 	border-left: 0;
-	height: 0.75rem;
-	width: 0.75rem;
+	height: 0.65rem;
+	width: 0.65rem;
 	position: absolute;
 	top: 50%;
 	left: calc(50% + 3px);
