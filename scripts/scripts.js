@@ -31,7 +31,8 @@ import {
   };
 
 const LCP_BLOCKS = [
-	'hero'
+	'hero', 
+	'teaser'
 ]; // add your LCP blocks to the list
 
 const AUDIENCES = {
