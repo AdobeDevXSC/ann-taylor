@@ -3,7 +3,7 @@ export default function decorate(block) {
 
 	// media query match that indicates mobile/tablet width
 	const isDesktop = window.matchMedia('(min-width: 1024px)');
-
+	
 	function toggleImage() {
 		const desktopImage = blockImages[0];
 		const mobileImage = blockImages[1];
