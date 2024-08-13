@@ -1,5 +1,8 @@
-# Door Opener Project Boilerplate 
+# Ann Taylor - KnitWell EDS Demo
+Ann Taylor/KnotWell Edge Delivery Document-Based Authoring Demo.
+Mockup of Ann Taylor landing page to showcase how efficient development in Edge Delivery Services is.
 
+Landing Page: https://www.anntaylor.com/
 
 ## Environments
 - Preview: Preview: https://main--ann-taylor--adobedevxsc.hlx.page/
