@@ -20,6 +20,7 @@ header .nav-wrapper {
 	height: var(--nav-height);
 	padding: 0 1rem;
 	font-family: var(--body-font-family);
+	font-weight: 400;
   }
   
   header nav#nav[aria-expanded="true"] {

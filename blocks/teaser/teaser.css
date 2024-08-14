@@ -39,6 +39,7 @@ main .section.teaser-container > div {
 
 .teaser.hero > div:last-of-type h4 {
 	font-family: var(--body-font-family);
+	font-weight: 700;
 	text-transform: uppercase;
 	text-align: center;
 	margin: 0 0 8px 0;
