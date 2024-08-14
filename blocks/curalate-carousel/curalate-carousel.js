@@ -139,64 +139,114 @@ export default async function decorate(block) {
     container.append(slideNavButtons);
   }
 
-  if(isJSONCarousel){  
-	const link = block.querySelector('a');
-  	const cardData = await fetchJson(link);
-	cardData.forEach((card, idx) => {
 
-		// handles images being brought in from scene7 links
+	const link = block.querySelector('a');
+  	const slideData = await fetchJson(link);
+
+	slideData.forEach((slide, idx) => {
+		const slideProductsData = [
+				// 1
+				{
+					'title': slide.title1,
+					'image': slide.image1,
+					'price': slide.price1,
+					'salePrice': slide.salePrice1,
+				},
+				// 2
+				{
+					'title': slide.title2,
+					'image': slide.image2,
+					'price': slide.price2,
+					'salePrice': slide.salePrice2,
+				},
+				// 3
+				{
+					'title': slide.title3,
+					'image': slide.image3,
+					'price': slide.price3,
+					'salePrice': slide.salePrice3,
+				},
+				// 4
+				{
+					'title': slide.title4,
+					'image': slide.image4,
+					'price': slide.price4,
+					'salePrice': slide.salePrice4,
+				},
+				// 5
+				{
+					'title': slide.title5,
+					'image': slide.image5,
+					'price': slide.price5,
+					'salePrice': slide.salePrice5,
+				}
+			];
+
+
+		
+		// handles images being brought in from curalate links
 		function jsx(html, ...args) {
 			return html.slice(1).reduce((str, elem, i) => str + args[i] + elem, html[0]);
 		}
-		const picture = document.createElement('picture')
-		
-		picture.innerHTML = jsx`
-			<source type="image/webp" srcset="${card.s7image}?$rfk_medium$">
-			<img class="s7" loading="lazy" alt="${card.title}" src="${card.s7image}?$rfk_medium$">
+
+		// make jsx for products
+		slideProductsData.forEach((product) => {
+			
+		})
+
+		const socialPicture = document.createElement('picture')
+		const productPicture = document.createElement('picture')
+
+		socialPicture.innerHTML = jsx`
+		<source sizes="352.25px" srcset="${slide.profileImage}=/w/150?typ=webp 150w,${slide.profileImage}/w/300?typ=webp 300w,${slide.profileImage}/w/450?typ=webp 450w,${slide.profileImage}/w/600?typ=webp 600w" type="image/webp">
+			  <source sizes="352.25px" 
+		srcset="${slide.profileImage}=/w/150? 150w,${slide.profileImage}/w/300? 300w,${slide.profileImage}/w/450? 450w,${slide.profileImage}/w/600? 600w" type="image/webp">
+		<img alt="..." 
+			src="https://edge.curalate.com/sites/anntaylor-wcpeme/experiences/custom-carousel-1597850128186/assets/imagePlaceholder.png">
 		`;
 		// // //
-		  
+
+		const togglePopout = (isOpen) => {
+			// isOpen is true (popout is open)
+			if(isOpen){
+				// toggle class to hide div
+				// set data attribute to opposite of isOpen (false)
+			} else {
+				// popout is closed, toggle class & dataAttribute
+			}
+		}
+		
 		const createdSlide = document.createElement('li');
 		createdSlide.dataset.slideIndex = idx;
 		createdSlide.setAttribute('id', `carousel-${carouselId}-slide-${idx}`);
 		createdSlide.classList.add('carousel-slide');
-		
-		if(card.bestSeller === 'true'){
-			createdSlide.innerHTML = `
-			<div class="slide-image">
-				${picture.outerHTML}
-				<button class="qv-button desktop">Quick View <span><img class="icon" src="/icons/chevron-right.svg" /></span></button>
-			<span class="bestseller">
-				${card.bestSeller === 'true' ? 'best seller' : ''}
-			</span>
+			
+		createdSlide.innerHTML = `
+		<div class="slide-image">
+			${socialPicture.outerHTML}
+		</div>
+		<div class="hover">
+			likes	handle
+			shop the look
+		</div>
+		<div class="popout-wrapper">
+			<div class="popout-header>
+				<h4>Shop The Look</h4>
+				<div>${slide.likes} ${slide.handle}</div>
+				<button class="close-popout" onClick={clickToClose}>
+					insert close icon here
+				</button>
 			</div>
-			<button class="qv-button mobile">Quick View></button>
-			<div class="slide-content">
-			<h5>${card.title}</h5>
-			<p>
-				<span class="sale-price">${card.nowPrice}</span>
-				<span class="strikethrough">${card.discountedPrice}</span>
-				(original ${card.originalPrice})
-			</p>
-			<p class="percent">Extra ${card.percentOff}% Off. Price as Marked</p>
-			</div>`
-	  	} else {		
-			createdSlide.innerHTML = `
-			<div class="slide-image">
-				${picture.outerHTML}
-				<button class="qv-button desktop">Quick View <span><img class="icon" src="/icons/chevron-right.svg" /></span></button>
+
+			<div class="new-arrivals">
+				<h4>New Arrivals</h4>
+				<p>Just-in styles, right this way...</p>
+				<a href="https://www.anntaylor.com/new-arrivals/cata00008?loc=Curalate_NewArrivals&ICID=Curalate_NewArrivals">
+					Shop Now
+				</a>
 			</div>
-			<button class="qv-button mobile">Quick View</button>
-			<div class="slide-content">
-				<h5>${card.title}</h5>
-				<p>
-					<span class="sale-price">${card.nowPrice}</span>
-					<span class="strikethrough">${card.discountedPrice}</span>
-					(original ${card.originalPrice})
-				</p>
-				<p class="percent">Extra ${card.percentOff}% Off. Price as Marked</p>
-			</div>`
-		}
+		</div>
+		`
 
 		const labeledBy = createdSlide.querySelector('h1, h2, h3, h4, h5, h6');
 		if (labeledBy) {
@@ -209,25 +259,13 @@ export default async function decorate(block) {
 			const indicator = document.createElement('li');
 			indicator.classList.add('carousel-slide-indicator');
 			indicator.dataset.targetSlide = idx;
-			indicator.innerHTML = `<button type="button"><span>${placeholders.showSlide || 'Show Slide'} ${idx + 1} ${placeholders.of || 'of'} ${cardData.length}</span></button>`;
+			indicator.innerHTML = `<button type="button"><span>${placeholders.showSlide || 'Show Slide'} ${idx + 1} ${placeholders.of || 'of'} ${slideData.length}</span></button>`;
 			slideIndicators.append(indicator);
 		}
-	})
-  } else {
-	rows.forEach((row, idx) => {
-		const slide = createSlide(row, idx, carouselId);
-		slidesWrapper.append(slide);
 
-		if (slideIndicators) {
-		const indicator = document.createElement('li');
-		indicator.classList.add('carousel-slide-indicator');
-		indicator.dataset.targetSlide = idx;
-		indicator.innerHTML = `<button type="button"><span>${placeholders.showSlide || 'Show Slide'} ${idx + 1} ${placeholders.of || 'of'} ${rows.length}</span></button>`;
-		slideIndicators.append(indicator);
-		}
-		row.remove();
-	});
-  }
+		slidesWrapper.append(createdSlide);
+	})
+
   container.append(slidesWrapper);
   block.prepend(container);
 
