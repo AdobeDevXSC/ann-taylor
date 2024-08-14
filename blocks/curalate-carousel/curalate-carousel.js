@@ -140,6 +140,7 @@ export default async function decorate(block) {
   }
 
 
+//  fetch data and render
 	const link = block.querySelector('a');
   	const slideData = await fetchJson(link);
 
@@ -182,20 +183,45 @@ export default async function decorate(block) {
 				}
 			];
 
-
-		
-		// handles images being brought in from curalate links
 		function jsx(html, ...args) {
 			return html.slice(1).reduce((str, elem, i) => str + args[i] + elem, html[0]);
 		}
 
-		// make jsx for products
-		slideProductsData.forEach((product) => {
-			
-		})
+		// make jsx for each profile's products panel
+		const productsContainer = document.createElement('div');
+		productsContainer.className = "products-container"
 
+		slideProductsData.forEach(product => {
+			// make product wrapper
+			const productWrapper = document.createElement('div');
+
+			// process product image from curalate link
+			const productPicture = document.createElement('picture')
+
+			productPicture.innerHTML = jsx`
+				<source sizes="352.25px" srcset="${product.image}=/w/150?typ=webp 150w,${product.image}/w/300?typ=webp 300w,${product.image}/w/450?typ=webp 450w,${product.image}/w/600?typ=webp 600w" type="image/webp">
+				<source sizes="352.25px" srcset="${product.image}=/w/150? 150w,${product.image}/w/300? 300w,${product.image}/w/450? 450w,${slide.profileImage}/w/600? 600w" type="image/webp">
+				<img alt="..." src="https://edge.curalate.com/sites/anntaylor-wcpeme/experiences/custom-carousel-1597850128186/assets/imagePlaceholder.png">
+			`;
+
+			// if product info is not empty, render product details;
+			if(product.title !== ''){
+				productWrapper.innerHTML = `
+					<div class="product-image">
+						${productPicture.outerHTML}
+					</div>
+					<div class="product-content">
+						<p>${product.title}</p>
+					</div>
+				`;
+			} else {
+				productWrapper.innerHTML = null;
+			}
+			productsContainer.append(productWrapper)
+		});
+
+		// handle profile image from curalate link
 		const socialPicture = document.createElement('picture')
-		const productPicture = document.createElement('picture')
 
 		socialPicture.innerHTML = jsx`
 		<source sizes="352.25px" srcset="${slide.profileImage}=/w/150?typ=webp 150w,${slide.profileImage}/w/300?typ=webp 300w,${slide.profileImage}/w/450?typ=webp 450w,${slide.profileImage}/w/600?typ=webp 600w" type="image/webp">
@@ -222,31 +248,30 @@ export default async function decorate(block) {
 		createdSlide.classList.add('carousel-slide');
 			
 		createdSlide.innerHTML = `
-		<div class="slide-image">
-			${socialPicture.outerHTML}
-		</div>
-		<div class="hover">
-			likes	handle
-			shop the look
-		</div>
-		<div class="popout-wrapper">
-			<div class="popout-header>
-				<h4>Shop The Look</h4>
-				<div>${slide.likes} ${slide.handle}</div>
-				<button class="close-popout" onClick={clickToClose}>
-					insert close icon here
-				</button>
+			<div class="slide-image">
+				${socialPicture.outerHTML}
 			</div>
-
-			<div class="new-arrivals">
-				<h4>New Arrivals</h4>
-				<p>Just-in styles, right this way...</p>
-				<a href="https://www.anntaylor.com/new-arrivals/cata00008?loc=Curalate_NewArrivals&ICID=Curalate_NewArrivals">
-					Shop Now
-				</a>
+			<div class="profile-hover">
+				likes	handle
+				shop the look
 			</div>
-		</div>
-		`
+			<div class="popout-wrapper">
+				<div class="popout-header">
+					<h4>Shop The Look</h4>
+					<div>${slide.likes} ${slide.handle}</div>
+					<button class="close-popout" onClick={clickToClose}>
+						insert close icon here
+					</button>
+				${productsContainer.outerHTML}
+				<div class="new-arrivals">
+					<h4>New Arrivals</h4>
+					<p>Just-in styles, right this way...</p>
+					<a href="https://www.anntaylor.com/new-arrivals/cata00008?loc=Curalate_NewArrivals&ICID=Curalate_NewArrivals">
+						Shop Now
+					</a>
+				</div>
+			</div>
+			`;
 
 		const labeledBy = createdSlide.querySelector('h1, h2, h3, h4, h5, h6');
 		if (labeledBy) {
