@@ -301,6 +301,9 @@
   
 
 
+
+  
+/* 
   @media (width >= 600px) {
 	.carousel .carousel-navigation-buttons {
 	  left: 1rem;
@@ -325,7 +328,7 @@
 	.carousel .carousel-slide .carousel-slide-content[data-align="justify"] {
 	  --slide-content-width: auto;
 	}
-  }
+  } */
 
 
 
