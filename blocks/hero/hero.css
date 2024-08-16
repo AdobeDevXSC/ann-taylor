@@ -35,11 +35,7 @@ main .hero-container > div {
 	box-sizing: border-box;
 	display: none;
   }
-  
-  .hero  br {
-	display: none;
-  }
-  
+    
   .hero img {
 	object-fit: cover;
 	width: 100%;
@@ -97,7 +93,7 @@ main .hero-container > div {
 	}
   }
   
-  @media (width > 768px) {
+  @media (width >= 769px) {
 	.hero picture.hero-desktop {
 	 display: block;
 	}
