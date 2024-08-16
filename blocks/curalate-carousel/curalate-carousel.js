@@ -60,6 +60,7 @@ function bindEvents(block) {
     showSlide(block, parseInt(block.dataset.activeSlide, 10) + 1);
   });
 
+
   const slideObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) updateActiveSlide(entry.target);
@@ -110,14 +111,18 @@ export default async function decorate(block) {
     slideIndicatorsNav.append(slideIndicators);
     block.append(slideIndicatorsNav);
 
-    const slideNavButtons = document.createElement('div');
-    slideNavButtons.classList.add('carousel-navigation-buttons');
-    slideNavButtons.innerHTML = `
-      <button type="button" class= "slide-prev" aria-label="${placeholders.previousSlide || 'Previous Slide'}"></button>
+    const slideNavNextButton = document.createElement('div');
+	const slideNavPrevButton = document.createElement('div');
+    slideNavNextButton.classList.add('carousel-navigation-buttons', 'next');
+	slideNavPrevButton.classList.add('carousel-navigation-buttons', 'prev');
+    slideNavNextButton.innerHTML = `
       <button type="button" class="slide-next" aria-label="${placeholders.nextSlide || 'Next Slide'}"></button>
     `;
+	 slideNavPrevButton.innerHTML = `
+		<button type="button" class= "slide-prev" aria-label="${placeholders.previousSlide || 'Previous Slide'}"></button>
+	`;
 
-    container.append(slideNavButtons);
+    container.append(slideNavPrevButton, slideNavNextButton);
   }
   
 
@@ -199,7 +204,6 @@ export default async function decorate(block) {
 				`;
 			} else {
 				// product info is empty, set innerHtml as empty
-				productWrapper.innerHTML = null;
 				productWrapper.className = "empty";
 			}
 
@@ -208,10 +212,23 @@ export default async function decorate(block) {
 				sale.classList.add('has-sale');
 			}
 
-			productsContainer.append(productWrapper)
+			if(!productWrapper.classList.contains("empty")){
+				productsContainer.append(productWrapper);
+			}
 			productsContainer.className = `products-container`;
 		});
 
+		const newArrivals = document.createElement('div');
+		newArrivals.className = "new-arrivals";
+		newArrivals.innerHTML = `
+			<h4>New Arrivals</h4>
+			<p>Just-in styles, right this way...</p>
+			<a href="https://www.anntaylor.com/new-arrivals/cata00008?loc=Curalate_NewArrivals&ICID=Curalate_NewArrivals">
+				Shop Now
+			</a>`;
+
+		productsContainer.append(newArrivals);
+			
 		// process profile image from curalate link
 		const socialPicture = document.createElement('picture');
 		socialPicture.innerHTML = jsx`
@@ -250,13 +267,6 @@ export default async function decorate(block) {
 				</div>
 				<div class="popout-content products-${productCounter}-up">
 					${productsContainer.outerHTML}
-					<div class="new-arrivals">
-						<h4>New Arrivals</h4>
-						<p>Just-in styles, right this way...</p>
-						<a href="https://www.anntaylor.com/new-arrivals/cata00008?loc=Curalate_NewArrivals&ICID=Curalate_NewArrivals">
-							Shop Now
-						</a>
-					</div>
 				</div>
 			</div>
 		`;
@@ -270,30 +280,52 @@ export default async function decorate(block) {
 		}
 
 		const togglePopout = () => {
-			console.log("toggle function", idx)
-			// const allPopouts = [...block.querySelectorAll(".popout-wrapper")];
-			// console.log("all popouts", allPopouts);
-			// let currentPopout = allPopouts.findIndex(popout => {
-			// 	// find popout that matches slide
-			// 	popout.id == `slide-${idx}-popout`;
-			// })
-			// console.log(currentPopout);
-			// check if active
-	
-				// if not active 
-					// close all other slide popouts
-					// set to active
-	
-				// if active, set to not active
+			const allPopouts = [...block.querySelectorAll(".popout-wrapper")];
+			allPopouts.forEach(popout => {
+				// find current slide popout			
+				if(popout.id == `slide-${idx}-popout`){
+					// check if current popout is already active
+					if(popout.classList.contains("active")){
+						// if active, set to not active to close popout
+						popout.classList.remove("active");
+						createdSlide.classList.remove("popout-active");
+						slidesWrapper.classList.remove("active");
+					} else {
+						// and set to active to open popout
+						popout.classList.add("active");
+						createdSlide.classList.add("popout-active");
+						slidesWrapper.classList.add("active");
+					}
+				}
+				// close all other popouts
+				if(popout.id !== `slide-${idx}-popout`){
+					popout.classList.remove("active");
+
+				}
+			});
+
+			// remove active class from all other slides except current slide
+			const allSlides = [...block.querySelectorAll(".carousel-slide")];
+			allSlides.forEach(slide => {
+				if(Number(slide.dataset.slideIndex) !== idx){
+					slide.classList.remove("popout-active")
+				}
+			});
 		};
 
 		const closePopout = () => {
-			console.log("close popout", idx)
+			const currentPopout = block.querySelector(`#slide-${idx}-popout`);
+			const currentSlide = block.querySelector(`#carousel-${carouselId}-slide-${idx}`);
+			
+			if(currentPopout.classList.contains("active")){
+				currentPopout.classList.remove("active");
+				currentSlide.classList.remove("popout-active");
+				slidesWrapper.classList.remove("active");
+			};
 		}
 
 		const popoutTrigger = createdSlide.querySelector(".popout-trigger");
 		popoutTrigger.onclick = function(){togglePopout()}
-	
 	
 		const closeButton = createdSlide.querySelector(".close-popout");
 		closeButton.onclick = function(){closePopout()}
@@ -301,13 +333,33 @@ export default async function decorate(block) {
 		slidesWrapper.append(createdSlide);
 	});
 
-
-
-
-
-
 	container.append(slidesWrapper);
 	block.prepend(container);
+
+	// close popouts when navigating carousel
+	const closeAllPopouts = () => {
+		const allPopouts = [...block.querySelectorAll(".popout-wrapper")];
+		allPopouts.forEach(popout => {
+			if(popout.classList.contains("active")){
+				popout.classList.remove("active");
+			}
+		})
+		const allSlides = [...block.querySelectorAll(".carousel-slide")];
+		allSlides.forEach(slide => {
+			if(slide.classList.contains("popout-active")){
+				slide.classList.remove("popout-active")
+			}
+		});
+		if(slidesWrapper.classList.contains("active")){
+			slidesWrapper.classList.remove("active");
+		}
+	};
+
+	const navButtons = block.querySelectorAll('.carousel-navigation-buttons')
+	navButtons.forEach(button => {
+		button.onclick = function(){closeAllPopouts()};
+	});
+
 
 	if(!isSingleSlide) {
 		bindEvents(block);

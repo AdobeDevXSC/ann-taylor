@@ -125,6 +125,7 @@
 	font-family: var(--body-font-family);
 	font-weight: 400;
 	margin: 16px 0 4px;
+	min-height: 2lh;
 }
 
 .carousel .carousel-slide .slide-content p {
