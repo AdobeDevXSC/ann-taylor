@@ -1,23 +1,32 @@
-import { makeVideo } from '../../scripts/scripts.js';
-import { decorateIcons } from '../../scripts/aem.js';
+/**
+ * loads and decorates the hero
+ * @param {Element} block The hero block element
+ */
 
 export default async function decorate(block) {
-  decorateIcons(block);
+	const blockChildren = block.children[0];
+	[...blockChildren.children].forEach((child) => {
+	  const pictureElement = child.querySelectorAll('picture');
+	  if (pictureElement.length > 0) {
+		pictureElement.forEach((pic, index) => {
+		  if (index === 0) {
+			pic.classList.add('hero-desktop');
+		  } else if (index === 1) {
+			pic.classList.add('hero-mobile');
+		  }
+		  child.className = 'hero-image';
+		});
+	  } else {
+		child.className = 'hero-desc-wrapper';
+		const buttonLink = child.querySelector('.button-container a');
+		buttonLink?.classList.remove('button', 'button-primary');
+		buttonLink?.classList.add('button-primary');
+	  }
+	});
   
-  if (Object.values(block.classList).includes('video')) {
-    // const desktopVideoSrc = block.querySelector('div > a');
-    const mobileVideoSrc = block.querySelector('div > a');
-	
-	console.log(mobileVideoSrc)
-
-
-	const isDesktop = window.matchMedia('(min-width: 1024px)');
-
-    if(videoSrc.href.includes(window.hlx.codeBasePath)) {
-      videoSrc.href = videoSrc.text;
-    }
-
-    makeVideo(block.querySelector('div'), videoSrc.href);
-    videoSrc.remove();
+	const imageElements = block.querySelectorAll('img');
+	imageElements.forEach((img) => {
+	  img.removeAttribute('loading'); // Lighthouse recommendation: remove lazy-loading
+	  img.setAttribute('loading', 'eager');
+	});
   }
-}
