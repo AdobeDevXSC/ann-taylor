@@ -289,12 +289,10 @@ export default async function decorate(block) {
 						// if active, set to not active to close popout
 						popout.classList.remove("active");
 						createdSlide.classList.remove("popout-active");
-						slidesWrapper.classList.remove("active");
 					} else {
 						// and set to active to open popout
 						popout.classList.add("active");
 						createdSlide.classList.add("popout-active");
-						slidesWrapper.classList.add("active");
 					}
 				}
 				// close all other popouts
@@ -320,7 +318,6 @@ export default async function decorate(block) {
 			if(currentPopout.classList.contains("active")){
 				currentPopout.classList.remove("active");
 				currentSlide.classList.remove("popout-active");
-				slidesWrapper.classList.remove("active");
 			};
 		}
 
@@ -350,9 +347,6 @@ export default async function decorate(block) {
 				slide.classList.remove("popout-active")
 			}
 		});
-		if(slidesWrapper.classList.contains("active")){
-			slidesWrapper.classList.remove("active");
-		}
 	};
 
 	const navButtons = block.querySelectorAll('.carousel-navigation-buttons')

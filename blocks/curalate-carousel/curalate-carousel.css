@@ -81,6 +81,7 @@
 	scroll-snap-type: x mandatory;
 	overflow: scroll clip;
 	background: transparent;
+	margin: 0 20px;
 	/* margin-bottom: -3px; */
   }
 
@@ -97,7 +98,7 @@
 	justify-content: flex-start;
 	width: 100%;
 	min-height: fit-content;
-	transition: all 0.1s cubic-bezier(.060, 0.975, 0.195, 0.985);
+	/* transition: all 0.1s cubic-bezier(.060, 0.975, 0.195, 0.985); */
   }
 
   @media(width >= 1024px){
@@ -111,6 +112,18 @@
 		flex: 0 0 100%;
 		align-items: center;
 	}
+  }
+
+
+
+  .curalate-carousel .carousel-slide.popout-active {
+	padding-bottom: 400px;
+  }
+
+  @media (width >= 1024px){
+	.curalate-carousel .carousel-slide.popout-active {
+		padding-bottom: 500px;
+	  }
   }
 
   .curalate-carousel .carousel-slide button.popout-trigger {
@@ -141,7 +154,7 @@
 	position: absolute;
 	width: 0; 
 	height: 0; 
-	bottom: -1px;
+	bottom: 0;
 	left: 50%;
 	transform: translateX(-50%);
 	border-left: 18px solid transparent;
@@ -157,8 +170,9 @@
     
   .curalate-carousel .carousel-navigation-buttons {
 	position: absolute;
-	top: 50%;
-	transform: translateY(-50%); 
+	/* top: 50%;
+	transform: translateY(-50%);  */
+	top: 154px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -166,11 +180,11 @@
   }
   
   .curalate-carousel .carousel-navigation-buttons.prev {
-	left: -0.75rem;
+	left: -0.5rem;
   }
 
   .curalate-carousel .carousel-navigation-buttons.next {
-	right: -0.5rem;
+	right: -0.25rem;
   }
 
   /* stylelint-disable-next-line no-descending-specificity */
@@ -240,18 +254,18 @@
   .popout-wrapper {	
 	border-bottom: 2px solid rgb(25, 25, 25);
 	background-color: var(--white);
-	min-width: 1100px;
+	background-color: var(--white);
 	width: 100%;
 	flex-direction: column;
 	align-items: center;
+	z-index: 2;
 	padding: 32px 0;
 	display: flex;
 	position: absolute;
 	bottom: 0;
 	left: 0;
-	max-height: 435px;
-	min-height: 435px;
-	margin-bottom: -500px;
+	max-height: 375px;
+	min-height: 375px;
   }
 
   .curalate-carousel .popout-wrapper::before {
@@ -282,6 +296,7 @@
     font-weight: 600;
     letter-spacing: 0.2px;
 	font-family: var(--body-font-family);
+	margin: 0;
   }
 
   /* close button */
@@ -291,7 +306,7 @@
 	margin: 0;
 	padding: 0;
 	position: absolute;
-	top: 30px;
+	top: 4px;
 	right: 27.5px;
 	height: 24px;
 	width: 24px;
@@ -335,13 +350,18 @@
 
   /*popout products card section */
   .popout-content {
-	max-width: 1100px;
 	width: 100%;
+  }
+
+  .products-container {
+	display: grid;
+	gap: 10px;
+	width: 75%;
+	margin: 0 auto;
   }
 
   .popout-content.products-2-up .products-container {
 	grid-template-columns: repeat(3, 1fr);
-	max-width: 1000px;
   }
 
   .popout-content.products-3-up .products-container {
@@ -356,18 +376,8 @@
 	grid-template-columns: repeat(6, 1fr);
   }
 
-  .products-container {
-	display: grid;
-	width: 100%;
-	margin: 0 auto;
-  }
-
-  .products-container > div {
-	/* padding: 20px 10px 0; */
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: flex-start;
+  .products-container > div:not(.new-arrivals) {
+	margin: 0 0 20px 0;
   }
 
   .products-container > div .product-image img {
@@ -415,7 +425,7 @@
 	flex-direction: column;
 	justify-content: center;
 	grid-column: span 1;
-	margin-top: 20px;
+	min-width: 250px;
   }
 
   .popout-content .products-container > .new-arrivals > h4 {
