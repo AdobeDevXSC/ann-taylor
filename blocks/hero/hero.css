@@ -96,7 +96,6 @@ main .hero-container > div {
 	}
 
 	.left-text-mobile .hero > div:last-of-type {
-		border: solid 2px lime;
 		top: 63%;
 		left: 33%;
 		transform: translate(-50%, -50%);
