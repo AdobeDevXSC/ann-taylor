@@ -25,7 +25,6 @@
   --white: #ffffff;
   --black: #000000;
   --pink: #de1b70;
-  --sale-red-header: #FF0000;
   --sale-red-carousel: #C44F4F;
 
   --dark-color: #111;
@@ -53,7 +52,7 @@
   --heading-font-size-xs: 18px;
 
   /* nav height */
-  --nav-height: 64px;
+  --nav-height: 166px;
 }
 
 @font-face {
