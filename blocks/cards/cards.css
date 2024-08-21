@@ -110,14 +110,18 @@
 }
 
 @media(width <= 1024px){
+	.cards.three-up ul {
+		flex-direction: column;
+	}
+
 	.cards.three-up ul li {
 		width: 71.5%;
 	}
 
 	.cards.three-up ul li:nth-of-type(2) {
 		width: 100%;
+		margin: 64px 0;
 	}
-
 }
 
 /* default card styles from boiler plate*/
