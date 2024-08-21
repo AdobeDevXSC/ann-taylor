@@ -268,7 +268,7 @@
   }
 }
 
-@media (width >= 900px) {
+@media (width >= 1024px) {
   .hlx-highlight {
     --highlight-size: 1rem;
   }

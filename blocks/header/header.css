@@ -206,18 +206,21 @@ header .nav-wrapper {
 	margin: 0;
   }
 
-  header nav#nav .nav-brand li {
+  header nav#nav .nav-brand ul:first-of-type li {
 	display: flex;
 	flex-direction: row-reverse;
 	align-items: center;
 	margin-left: 24px;
   }
 
-  header nav#nav .nav-brand li:first-of-type .icon img {
+  header nav#nav .nav-brand ul:first-of-type :first-of-type .icon img {
 	width: 20px;
 	margin-top: 3px;
   }
 
+  header .nav-brand ul:last-of-type {
+	display: none;
+  }
   
   /* sections */
   header nav#nav .nav-sections {

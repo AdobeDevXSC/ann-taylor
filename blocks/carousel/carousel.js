@@ -150,10 +150,18 @@ export default async function decorate(block) {
 		}
 		const picture = document.createElement('picture')
 		
-		picture.innerHTML = jsx`
-			<source type="image/webp" srcset="${card.s7image}?$rfk_medium$">
-			<img class="s7" loading="lazy" alt="${card.title}" src="${card.s7image}?$rfk_medium$">
-		`;
+		const isMobile = window.matchMedia('(max-width: 767px)');
+		if(isMobile){
+			picture.innerHTML = jsx`
+				<source type="image/webp" srcset="${card.s7image}?$rfk_small$">
+				<img class="s7" loading="lazy" alt="${card.title}" src="${card.s7image}?$rfk_small$">
+			`;
+		} else {
+			picture.innerHTML = jsx`
+				<source type="image/webp" srcset="${card.s7image}?$rfk_medium$">
+				<img class="s7" loading="lazy" alt="${card.title}" src="${card.s7image}?$rfk_medium$">
+			`;
+		}
 		// // //
 		  
 		const createdSlide = document.createElement('li');

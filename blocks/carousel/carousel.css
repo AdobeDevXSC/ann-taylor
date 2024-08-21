@@ -22,6 +22,7 @@
 .carousel .carousel-slide .slide-image {
 	position: relative;
 	height: fit-content;
+	width: 100%;
 }
 
 .carousel .carousel-slide .slide-image picture {
@@ -254,10 +255,6 @@
 	left: calc(50% - 3px);
   }
 
-
-
-
-
 @media (width <= 1024px) {
 	.section.carousel-container.ltgrey-bg {
 		padding: 60px 0px 60px 16px;
@@ -280,6 +277,9 @@
 		text-transform: uppercase;
 	}
 
-
-
+	.carousel .carousel-slide .slide-image img {
+		display: block;
+		object-fit: cover;
+		width: 100%;
+	}
 }

@@ -62,7 +62,7 @@
   src: local('Arial');
 }
 
-@media (width >= 900px) {
+@media (width >= 1024px) {
   :root {
     --heading-font-size-xxl: 60px;
     --heading-font-size-xl: 48px;
@@ -211,7 +211,7 @@ main .section {
   }
 }
 
-@media (width >= 900px) {
+@media (width >= 1024px) {
   .section > div {
     max-width: 1200px;
     margin: auto;
