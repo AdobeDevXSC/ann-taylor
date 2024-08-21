@@ -91,3 +91,29 @@
 	font-size: 11px;
 	line-height: 1;
 }
+
+@media (width <= 1024px) {
+	.section.banner-container.pigeonblue-bg .banner h6 {
+		display: none;
+	}
+
+	.section.banner-container.black-bg .banner h4, 
+	.section.banner-container.pigeonblue-bg .banner h5 { 
+		grid-column: 1/ span 8;
+		margin-bottom: 12px;
+	}
+	
+	.section.banner-container.black-bg .banner p:not(.button-container),
+	.section.banner-container.pigeonblue-bg .banner p:not(.button-container) {
+		grid-column: 2/ span 6;
+		padding: 0 20px;
+		margin: 0;
+		line-height: 1.5;
+	}
+
+	.banner p.button-container {
+		grid-column: 2/ span 6;
+		grid-row: 3;
+		margin: 4px auto 16px;
+	}
+}
