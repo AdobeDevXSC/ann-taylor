@@ -149,19 +149,11 @@ export default async function decorate(block) {
 			return html.slice(1).reduce((str, elem, i) => str + args[i] + elem, html[0]);
 		}
 		const picture = document.createElement('picture')
-		
-		const isMobile = window.matchMedia('(max-width: 767px)');
-		if(isMobile){
-			picture.innerHTML = jsx`
-				<source type="image/webp" srcset="${card.s7image}?$rfk_small$">
-				<img class="s7" loading="lazy" alt="${card.title}" src="${card.s7image}?$rfk_small$">
-			`;
-		} else {
-			picture.innerHTML = jsx`
-				<source type="image/webp" srcset="${card.s7image}?$rfk_medium$">
-				<img class="s7" loading="lazy" alt="${card.title}" src="${card.s7image}?$rfk_medium$">
-			`;
-		}
+
+		picture.innerHTML = jsx`
+			<source type="image/webp" srcset="${card.s7image}?$rfk_medium$">
+			<img class="s7" loading="lazy" alt="${card.title}" src="${card.s7image}?$rfk_medium$">
+		`;
 		// // //
 		  
 		const createdSlide = document.createElement('li');
