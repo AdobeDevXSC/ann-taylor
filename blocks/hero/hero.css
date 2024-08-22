@@ -36,6 +36,10 @@ main .hero-container > div {
 	transform: translate(-50%, -50%);
 }
 
+.hero.light-text div:last-of-type{
+	color: var(--white);
+}
+
 .hero > div:last-of-type h4 {
 	font-family: var(--body-font-family);
 	font-weight: 700;
